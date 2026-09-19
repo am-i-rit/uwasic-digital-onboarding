@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_example (
+module tt_um_uwasic_onboarding_amrit (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -42,5 +42,5 @@ module tt_um_example (
 
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, ui_in[7:3], uio_in, 1'b0};
-  
+
 endmodule
