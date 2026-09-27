@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Your Name
+ * Copyright (c) 2024 Amrit Bhasin
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -36,6 +36,20 @@ module tt_um_uwasic_onboarding_amrit (
     .en_reg_pwm_15_8(en_reg_pwm_15_8),
     .pwm_duty_cycle(pwm_duty_cycle),
     .out({uio_out, uo_out})
+  );
+
+  // instantiate spi module
+  spi_peripheral spi_peripheral_inst (
+    .clk(clk), // internal clock
+    .rst_n(rst_n),
+    .sclk(ui_in[0]), // we want to synchronize this with clk i think
+    .copi(ui_in[1]),
+    .ncs(ui_in[2]),
+    .en_reg_out_7_0(en_reg_out_7_0),
+    .en_reg_out_15_8(en_reg_out_15_8),
+    .en_reg_pwm_7_0(en_reg_pwm_7_0),
+    .en_reg_pwm_15_8(en_reg_pwm_15_8),
+    .pwm_duty_cycle(pwm_duty_cycle)
   );
 
   // List all unused inputs to prevent warnings
