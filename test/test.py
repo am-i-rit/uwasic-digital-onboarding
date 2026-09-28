@@ -175,10 +175,10 @@ async def test_pwm_freq(dut):
     await send_spi_transaction(dut, 1, 0x02, 0x01)  # enable pwm on output bit 0
     await send_spi_transaction(dut, 1, 0x04, 0x80)  # use any non-constant duty cycle
 
-    await FallingEdge(dut.uo_out)
+    await FallingEdge(dut.uo_out_0)
     fall_time_1 = cocotb.utils.get_sim_time(units="ns")
 
-    await FallingEdge(dut.uo_out)
+    await FallingEdge(dut.uo_out_0)
     fall_time_2 = cocotb.utils.get_sim_time(units="ns")
 
     period_nanoseconds = fall_time_2 - fall_time_1
@@ -222,13 +222,13 @@ async def test_pwm_duty(dut):
     await send_spi_transaction(dut, 1, 0x04, 0x80) # set duty cycle to 50%
 
     # wait for falling edge, then find time at next rising and falling edge
-    await FallingEdge(dut.uo_out)
+    await FallingEdge(dut.uo_out_0)
     fall_time_1 = cocotb.utils.get_sim_time(units="ns")
 
-    await RisingEdge(dut.uo_out)
+    await RisingEdge(dut.uo_out_0)
     rise_time = cocotb.utils.get_sim_time(units="ns")
 
-    await FallingEdge(dut.uo_out)
+    await FallingEdge(dut.uo_out_0)
     fall_time_2 = cocotb.utils.get_sim_time(units="ns")
 
     high_time = fall_time_2 - rise_time
