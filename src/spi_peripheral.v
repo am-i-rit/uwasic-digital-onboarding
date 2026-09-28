@@ -85,11 +85,13 @@ module spi_peripheral (
                         7'h02: en_reg_pwm_7_0 <= bit_storage[7:0];
                         7'h03: en_reg_pwm_15_8 <= bit_storage[7:0];
                         7'h04: pwm_duty_cycle <= bit_storage[7:0];
+                        default: ; // just being safe, in theory this shouldn't even be accessible
                     endcase
                 end
             end
         end
     end
+
 endmodule
 
 
